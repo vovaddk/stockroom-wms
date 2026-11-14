@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Stockroom Terminal</title>
+  <link rel="stylesheet" href="./css/terminal.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="brand">Stockroom</h1>
+    <div id="user-info" class="user" hidden>
+      <span id="user-name"></span>
+      <span id="user-role" class="role"></span>
+      <button id="sign-out" type="button" class="btn">Sign out</button>
+    </div>
+  </header>
+  <div class="messages">
+    <div id="status" class="msg" role="status" aria-live="polite"></div>
+    <div id="alert" class="msg msg-error" role="alert"></div>
+  </div>
+  <main id="screen" tabindex="-1"></main>
+</body>
+</html>
