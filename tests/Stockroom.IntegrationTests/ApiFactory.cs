@@ -56,5 +56,7 @@ public sealed class ApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
         // Development settings provide the demo users, demo JWT key and migrate/seed on startup.
         builder.UseEnvironment("Development");
         builder.UseSetting("ConnectionStrings:Default", _connectionString);
+        // Every test client logs in from the same in-memory "IP"; the production limit would throttle the suite.
+        builder.UseSetting("RateLimiting:LoginPermitsPerMinute", "1000");
     }
 }

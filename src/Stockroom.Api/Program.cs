@@ -39,6 +39,7 @@ builder.Services.AddAuthorizationBuilder()
     .AddPolicy(Policies.Operator, p => p.RequireRole(Roles.Operator, Roles.Manager))
     .AddPolicy(Policies.Manager, p => p.RequireRole(Roles.Manager));
 
+builder.Services.AddLoginRateLimit(builder.Configuration);
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.ConfigureHttpJsonOptions(o => o.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
@@ -73,6 +74,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 
 app.MapGet("/", () => Results.Redirect("/terminal/")).ExcludeFromDescription();
 app.MapHealthChecks("/health");

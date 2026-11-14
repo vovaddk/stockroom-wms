@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Stockroom.Api.Http;
+using Stockroom.Api.Security;
 using Stockroom.Application.Auth;
 
 namespace Stockroom.Api.Endpoints;
@@ -11,6 +12,7 @@ internal static class AuthEndpoints
         app.MapPost("/api/auth/login", LoginAsync)
             .WithTags("Auth")
             .AllowAnonymous()
+            .RequireRateLimiting(LoginRateLimit.Policy)
             .Validate<LoginRequest>();
     }
 
